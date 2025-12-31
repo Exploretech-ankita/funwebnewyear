@@ -74,6 +74,18 @@
         color: #201f20;
         text-shadow: 0 0 8px white;
     }
+    .back-btn {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 10;
+    background: rgba(255,255,255,0.85);
+    border: none;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+}
 </style>
 </head>
 
@@ -89,6 +101,7 @@
     <h2>Everywhere you want to go</h2>
     <img src="paris.jpg" alt="Paris">
 </div>
+<button class="back-btn" onclick="goBack()">⬅ Back</button>
 
 <script>
     const giftButton = document.getElementById("giftButton");
@@ -104,6 +117,13 @@
             placeContent.style.display = "flex"; // show place name + image
         }, 1500); // 1.5 seconds delay
     }
+    function goBack() {
+    if (history.length > 1) {
+        history.back();
+    } else {
+        location.href = "page3.html"; // change to your previous page
+    }
+}
 </script>
 
 </body>
