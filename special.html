@@ -81,6 +81,18 @@
             opacity: 0;
         }
     }
+    .back-btn {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 10;
+    background: rgba(255,255,255,0.85);
+    border: none;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+}
 </style>
 </head>
 
@@ -100,7 +112,7 @@
         <li>Dream big, plan smart, and take action with courage.</li>
     </ul>
 </div>
-
+<button class="back-btn" onclick="goBack()">⬅ Back</button>
 <script>
     const sequenceMessage = document.getElementById("sequenceMessage");
     const specialContent = document.getElementById("specialContent");
@@ -140,6 +152,13 @@
             setTimeout(() => clearInterval(confettiInterval), 5000);
         }, 3500);
     }
+     function goBack() {
+    if (history.length > 1) {
+        history.back();
+    } else {
+        location.href = "page3.html"; // change to your previous page
+    }
+}
 </script>
 
 </body>
