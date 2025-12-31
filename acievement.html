@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Achievements 🎀</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background-image: url("backgroundachievement.jpg"); /* your background */
+        background-size: cover;
+        background-position: center;
+        font-family: "Comic Sans MS", cursive;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        overflow: hidden;
+    }
+
+    h1 {
+        color: #201f20;
+        text-shadow: 0 0 12px white;
+        text-align: center;
+    }
+
+    /* 🎁 Gift button */
+    #giftButton {
+        width: 180px;
+        height: 180px;
+        background-image: url("gift.png"); /* gift image */
+        background-size: cover;
+        background-position: center;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        transition: transform 0.2s, box-shadow 0.2s;
+        position: relative;
+    }
+
+    #giftButton:hover {
+        transform: scale(1.1) rotate(-5deg);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.35);
+    }
+
+    #message {
+        font-size: 22px;
+        color: #dddbdb;
+        background: rgba(54, 54, 54, 0.7);
+        padding: 12px 20px;
+        border-radius: 15px;
+        display: none;
+        text-align: center;
+        max-width: 90%;
+    }
+
+    #achievementContent {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    #achievementContent img {
+        width: 300px;
+        border-radius: 15px;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+
+    #achievementContent h2 {
+        color: #202020;
+        text-shadow: 0 0 8px white;
+        text-align: center;
+    }
+
+    /* 🎊 Confetti */
+    .confetti {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: red;
+        opacity: 0.9;
+        transform: rotate(0deg);
+        pointer-events: none;
+        animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+        0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(110vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<h1>🏆 Your Achievements 🎀</h1>
+
+<button id="giftButton"></button>
+
+<div id="message">Me as your friend 😜…</div>
+
+<div id="achievementContent">
+    <h2> you will achieve more than you have even imagined!</h2>
+    <img src="achievement_image.jpg" alt="Achievement">
+</div>
+
+<script>
+    const giftButton = document.getElementById("giftButton");
+    const message = document.getElementById("message");
+    const achievementContent = document.getElementById("achievementContent");
+
+    const colors = ['#ff4b4b','#ffdd4b','#4bff72','#4bcaff','#ff4bda'];
+
+    function createConfetti() {
+        const confetti = document.createElement("div");
+        confetti.className = "confetti";
+        confetti.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
+        confetti.style.left = Math.random() * window.innerWidth + "px";
+        confetti.style.width = (5 + Math.random() * 8) + "px";
+        confetti.style.height = (5 + Math.random() * 8) + "px";
+        confetti.style.animationDuration = (2 + Math.random() * 2) + "s";
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 4000);
+    }
+
+    giftButton.onclick = () => {
+        // Start confetti
+        const confettiInterval = setInterval(createConfetti, 50);
+
+        // Show message first
+        message.style.display = "block";
+
+        setTimeout(() => {
+            message.style.display = "none";
+            achievementContent.style.display = "flex"; // show achievement
+            clearInterval(confettiInterval);
+        }, 1500);
+    }
+</script>
+
+</body>
+</html>
