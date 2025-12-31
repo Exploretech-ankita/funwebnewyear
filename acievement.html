@@ -98,6 +98,18 @@
             opacity: 0;
         }
     }
+    .back-btn {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 10;
+    background: rgba(255,255,255,0.85);
+    border: none;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+}
 </style>
 </head>
 
@@ -113,7 +125,7 @@
     <h2> you will achieve more than you have even imagined!</h2>
     <img src="achievement_image.jpg" alt="Achievement">
 </div>
-
+<button class="back-btn" onclick="goBack()">⬅ Back</button>
 <script>
     const giftButton = document.getElementById("giftButton");
     const message = document.getElementById("message");
@@ -145,7 +157,17 @@
             achievementContent.style.display = "flex"; // show achievement
             clearInterval(confettiInterval);
         }, 1500);
+        
     }
+    function goBack() 
+    {
+    if (history.length > 1) {
+        history.back();
+    } else {
+        location.href = "page3.html"; // change to your previous page
+    }
+}
+    
 </script>
 
 </body>
