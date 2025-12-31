@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Special Message 🎀</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background-image: url("backgroundspecial.jpg"); /* your cute background */
+        background-size: cover;
+        background-position: center;
+        font-family: "Comic Sans MS", cursive;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        overflow: hidden;
+    }
+
+    #sequenceMessage {
+        font-size: 28px;
+        color: #ff69b4;
+        text-shadow: 0 0 12px white;
+        text-align: center;
+        background: rgba(255,255,255,0.7);
+        padding: 15px 25px;
+        border-radius: 20px;
+        max-width: 80%;
+        transition: opacity 0.5s ease;
+    }
+
+    #specialContent {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        max-width: 600px;
+        background: rgba(255,255,255,0.7);
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+
+    #specialContent h2 {
+        color: #ff69b4;
+        text-shadow: 0 0 8px white;
+        text-align: center;
+        width: 100%;
+    }
+
+    #specialContent ul {
+        margin: 0;
+        padding-left: 20px;
+        list-style-type: "⭐ ";
+        font-size: 18px;
+        color: #222;
+    }
+
+    /* 🎊 Confetti */
+    .confetti {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: red;
+        opacity: 0.9;
+        transform: rotate(0deg);
+        pointer-events: none;
+        animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+        0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(110vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div id="sequenceMessage">BMJ 💖</div>
+
+<div id="specialContent">
+    <h2>💌 Your Special Message</h2>
+    <ul>
+        <li>Always believe in yourself and your unique abilities.</li>
+        <li>Keep learning, exploring, and growing every day.</li>
+        <li>Celebrate your small wins, they lead to big achievements.</li>
+        <li>Surround yourself with positive and inspiring people.</li>
+        <li>Stay kind, generous, and grateful – it brings true happiness.</li>
+        <li>Never fear challenges; they make you stronger and wiser.</li>
+        <li>Dream big, plan smart, and take action with courage.</li>
+    </ul>
+</div>
+
+<script>
+    const sequenceMessage = document.getElementById("sequenceMessage");
+    const specialContent = document.getElementById("specialContent");
+    const colors = ['#ff4b4b','#ffdd4b','#4bff72','#4bcaff','#ff4bda'];
+
+    function createConfetti() {
+        const confetti = document.createElement("div");
+        confetti.className = "confetti";
+        confetti.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
+        confetti.style.left = Math.random() * window.innerWidth + "px";
+        confetti.style.width = (5 + Math.random() * 8) + "px";
+        confetti.style.height = (5 + Math.random() * 8) + "px";
+        confetti.style.animationDuration = (2 + Math.random() * 2) + "s";
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 4000);
+    }
+
+    // Sequence: BMJ -> Just kidding -> Long message + confetti
+    window.onload = () => {
+        // Step 1: BMJ (already shown)
+        setTimeout(() => {
+            sequenceMessage.textContent = "Just kidding 😜"; // Step 2
+        }, 1500);
+
+        setTimeout(() => {
+            sequenceMessage.style.opacity = 0; // fade out message
+        }, 3000);
+
+        setTimeout(() => {
+            sequenceMessage.style.display = "none";
+            specialContent.style.display = "flex";
+
+            // Start confetti
+            const confettiInterval = setInterval(createConfetti, 50);
+
+            // Stop confetti after 5 seconds
+            setTimeout(() => clearInterval(confettiInterval), 5000);
+        }, 3500);
+    }
+</script>
+
+</body>
+</html>
