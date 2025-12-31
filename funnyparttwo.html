@@ -1,168 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Happy New Year 🎉🎀</title>
 
 <style>
-    body {
-        margin: 0;
-        height: 100vh;
-        background-image: url("backgroundimagetwo.jpg");
-        background-size: cover;
-        background-position: center;
-        font-family: "Comic Sans MS", cursive;
-        overflow: hidden;
-        position: relative;
-    }
+body {
+    margin: 0;
+    height: 100vh;
+    background-image: url("backgroundimagetwo.jpg");
+    background-size: cover;
+    background-position: center;
+    font-family: "Comic Sans MS", cursive;
+    overflow: hidden;
+    position: relative;
+    transition: opacity 1s ease;
+}
 
+body.fade-out { opacity: 0; }
+
+#message {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 56px;
+    color: #ff69b4;
+    text-shadow: 0 0 15px white;
+    text-align: center;
+    z-index: 2;
+}
+
+/* ⭐ Stars */
+.star {
+    position: absolute;
+    font-size: 22px;
+    animation: float 4s linear;
+    pointer-events: none;
+}
+
+@keyframes float {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-250px); }
+}
+
+/* 🎉 Confetti */
+.confetti {
+    position: absolute;
+    top: -10px;
+    pointer-events: none;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ➡ Next */
+#nextButton {
+    position: fixed;
+    bottom: 70px;
+    right: 300px;
+    background: #ff69b4;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+/* ⬅ Back */
+.back-btn {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 10;
+    background: rgba(255,255,255,0.85);
+    border: none;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
     #message {
-        position: absolute;
-        top: 40%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 56px;
-        color: #ff69b4;
-        text-shadow: 0 0 15px white;
-        text-align: center;
-        z-index: 2;
-    }
-
-    /* ⭐ Floating stars (optional) */
-    .star {
-        position: absolute;
-        font-size: 22px;
-        animation: float 4s linear;
-        color: #fff6a5;
-        pointer-events: none;
-    }
-
-    @keyframes float {
-        from { opacity: 1; transform: translateY(0) scale(1); }
-        to { opacity: 0; transform: translateY(-250px) scale(1.5); }
-    }
-
-    /* 🎊 Confetti */
-    .confetti {
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        background-color: red;
-        opacity: 0.9;
-        transform: rotate(0deg);
-        pointer-events: none;
-        animation: fall linear forwards;
-    }
-
-    @keyframes fall {
-        0% {
-            transform: translateY(0) rotate(0deg);
-            opacity: 1;
-        }
-        100% {
-            transform: translateY(110vh) rotate(360deg);
-            opacity: 0;
-        }
-    }
-
-    /* 🟡 Floating button bottom-right */
-    #nextButton {
-        position: fixed;
-        bottom: 80px;
-        right: 300px;
-        background-color: #ff69b4;
-        color: white;
-        border: none;
-        border-radius: 25px;
-        padding: 15px 25px;
-        font-size: 18px;
-        cursor: pointer;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-        transition: transform 0.2s ease;
-        z-index: 10;
-    }
-
-    #nextButton:hover {
-        transform: scale(1.1);
-    }
-
-    @media(max-width: 768px)
-    {
-        body {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    }
-    #message {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
         font-size: 30px;
-        color: #ff69b4;
-        text-shadow: 0 0 15px white;
-        text-align: center;
-        z-index: 2;
+        top: 50%;
     }
+     #nextButton {
+        bottom: 70px;
+        right: 40px;
+        padding: 14px 22px;
+        font-size: 15px;
     }
+}
 </style>
 </head>
 
 <body>
 
 <div id="message">
-    🎀 Happy New Year 🎀<br>
-    🌟 May your year sparkle 🌟
+🎀 Happy New Year 🎀<br>
+🌟 May your year sparkle 🌟
 </div>
 
-<!-- Floating Next Button -->
-<button id="nextButton" onclick="goNext()">Go to Page 3 ➡️</button>
+<button id="nextButton" onclick="goNext()">Next ➡</button>
+<button class="back-btn" onclick="goBack()">⬅ Back</button>
 
-<audio id="song" autoplay>
+<audio autoplay loop>
     <source src="happy-new-year-music-457512.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-    // ⭐ Floating stars
-    setInterval(() => {
-        const star = document.createElement("div");
-        star.className = "star";
-        star.textContent = "⭐";
-        star.style.left = Math.random() * window.innerWidth + "px";
-        star.style.bottom = "0px";
-        document.body.appendChild(star);
-        setTimeout(() => star.remove(), 4000);
-    }, 300);
+/* ⭐ Stars */
+setInterval(() => {
+    const s = document.createElement("div");
+    s.className = "star";
+    s.textContent = "⭐";
+    s.style.left = Math.random() * innerWidth + "px";
+    s.style.bottom = "0";
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 4000);
+}, 350);
 
-    // 🎊 Confetti
-    const colors = ['#ff4b4b','#ffdd4b','#4bff72','#4bcaff','#ff4bda'];
-    setInterval(() => {
-        const confetti = document.createElement("div");
-        confetti.className = "confetti";
-        confetti.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
-        confetti.style.left = Math.random() * window.innerWidth + "px";
-        confetti.style.width = (5 + Math.random() * 8) + "px";
-        confetti.style.height = (5 + Math.random() * 8) + "px";
-        confetti.style.animationDuration = (2 + Math.random() * 2) + "s";
-        document.body.appendChild(confetti);
-        setTimeout(() => confetti.remove(), 4000);
-    }, 150);
+/* 🎉 Confetti (mobile optimized) */
+const isMobile = innerWidth < 768;
+const colors = ['#ff4b4b','#ffdd4b','#4bff72','#4bcaff','#ff4bda'];
 
-    // Next button click
-    function goNext() {
-        // optional fade-out
-        document.body.style.transition = "opacity 1s ease";
-        document.body.style.opacity = 0;
-        setTimeout(() => {
-            window.location.href = "page3.html"; // Change to your Page-3 URL
-        }, 1000);
-        setTimeout(() => {
-    location.assign("funnyparttwo.html");
-}, 12050);
+const confettiTimer = setInterval(() => {
+    const c = document.createElement("div");
+    c.className = "confetti";
+    c.style.background = colors[Math.floor(Math.random() * colors.length)];
+    c.style.left = Math.random() * innerWidth + "px";
+    c.style.width = c.style.height = (isMobile ? 6 : 8) + "px";
+    c.style.animationDuration = (isMobile ? 3 : 2) + "s";
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 3500);
+}, isMobile ? 300 : 150);
 
+setTimeout(() => clearInterval(confettiTimer), 15000);
+
+/* ➡ Next */
+function goNext() {
+    document.body.classList.add("fade-out");
+    setTimeout(() => location.href = "page3.html", 1000);
+}
+
+/* ⬅ Safe Back */
+function goBack() {
+    if (history.length > 1) {
+        history.back();
+    } else {
+        location.href = "index.html"; // change to your previous page
     }
+}
+
+/* 👉 Swipe-back */
+let startX = 0;
+document.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+});
+document.addEventListener("touchend", e => {
+    const endX = e.changedTouches[0].clientX;
+    if (endX - startX > 80 && startX < 50) {
+        goBack();
+    }
+});
 </script>
 
 </body>
