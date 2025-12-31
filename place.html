@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Places You Visit 🎀</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background-image: url("backgroundplaces.jpg");
+        background-size: cover;
+        background-position: center;
+        font-family: "Comic Sans MS", cursive;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        overflow: hidden;
+    }
+
+    h1 {
+        color: #0a0a0a;
+        text-shadow: 0 0 12px white;
+        text-align: center;
+    }
+
+    /* 🎁 Gift button */
+    #giftButton {
+        width: 180px;
+        height: 180px;
+        background: transparent;
+        background-image: url("gift.png"); /* your gift image */
+        background-size: cover;
+        background-position: center;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        transition: transform 0.2s, box-shadow 0.2s;
+        position: relative;
+    }
+
+    #giftButton:hover {
+        transform: scale(1.1) rotate(-5deg);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.35);
+    }
+
+    #message {
+        font-size: 22px;
+        color: #222;
+        background: rgba(241, 234, 234, 0.7);
+        padding: 12px 20px;
+        border-radius: 15px;
+        display: none;
+        text-align: center;
+    }
+
+    #placeContent {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    #placeContent img {
+        width: 300px;
+        border-radius: 15px;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+
+    #placeContent h2 {
+        color: #201f20;
+        text-shadow: 0 0 8px white;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>🏝 Place You will Visit 🎀</h1>
+
+<button id="giftButton"></button>
+
+<div id="message">Ha ha… forget it 😜</div>
+
+<div id="placeContent">
+    <h2>Everywhere you want to go</h2>
+    <img src="paris.jpg" alt="Paris">
+</div>
+
+<script>
+    const giftButton = document.getElementById("giftButton");
+    const message = document.getElementById("message");
+    const placeContent = document.getElementById("placeContent");
+
+    giftButton.onclick = () => {
+        // Show the playful message first
+        message.style.display = "block";
+
+        setTimeout(() => {
+            message.style.display = "none";
+            placeContent.style.display = "flex"; // show place name + image
+        }, 1500); // 1.5 seconds delay
+    }
+</script>
+
+</body>
+</html>
