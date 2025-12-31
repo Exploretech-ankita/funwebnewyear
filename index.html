@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy New Year 🌟🎀</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background-image: url("backgroundimage.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        font-family: "Comic Sans MS", cursive;
+        overflow: hidden;
+        position: relative;
+        transition: opacity 1.2s ease;
+    }
+
+    body.fade-out {
+        opacity: 0;
+    }
+
+    #startButton {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 10;
+        margin-top: 90px;
+        margin-left: 150px;
+        height: 300px;
+        width: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #startButton img {
+        width: 180px;
+    }
+
+    /* 🐒 Wiggle on hover */
+    #startButton:hover img {
+        animation: wiggle 0.6s ease-in-out infinite;
+    }
+
+    @keyframes wiggle {
+        0% { transform: rotate(0deg); }
+        25% { transform: rotate(5deg); }
+        50% { transform: rotate(-5deg); }
+        75% { transform: rotate(5deg); }
+        100% { transform: rotate(0deg); }
+    }
+
+    /* 🐰 Hop animation */
+    .hop {
+        animation: hop 0.6s ease-in-out 20;
+    }
+
+    @keyframes hop {
+        0%   { transform: translateY(0); }
+        50%  { transform: translateY(-50px); }
+        100% { transform: translateY(0); }
+    }
+
+    span {
+        margin-top: 30px;
+        margin-left: 70px;
+        font-size: 18px;
+        color: #222;
+        text-align: center;
+        max-width: 90%;
+        background: rgba(255,255,255,0.6);
+        padding: 10px 20px;
+        border-radius: 20px;
+        position: absolute;
+    }
+    @media (max-width: 768px) {
+
+    span {
+        position: static;         /* remove absolute positioning */
+        font-size: 5vw;
+        padding: 3vh 4vw;
+        margin-top: 3vh;          /* spacing below button */
+    }
+
+    #startButton {
+        width: 50vw;   /* bigger button on small screens */
+        height: 35vh;  /* increase height */
+        margin: 0;     /* remove margins so flex centering works */
+    }
+
+    #startButton img {
+        width: 110%;    /* make the bunny image slightly bigger inside the button */
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<button id="startButton" onclick="startHop()">
+    <img src="images_1_-removebg-preview.png" alt="Bunny">
+</button>
+
+<span>Click Yourself (Yes you are thinking right the monkey 😌)</span>
+
+<audio id="song">
+    <source src="dinkachika.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    function startHop() {
+        const btn = document.getElementById("startButton");
+        const song = document.getElementById("song");
+
+        // Prevent double click
+        btn.onclick = null;
+
+        // Play music
+        song.volume = 1;
+        song.currentTime = 0;
+        song.play();
+
+        // Smooth volume fade-out
+        const fade = setInterval(() => {
+            if (song.volume > 0.05) {
+                song.volume -= 0.05;
+            } else {
+                song.volume = 0;
+                clearInterval(fade);
+            }
+        }, 600);
+
+        // Hop animation
+        btn.classList.add("hop");
+
+        // Fade out page
+        setTimeout(() => {
+            document.body.classList.add("fade-out");
+        }, 11000);
+
+        // Go to next page
+        setTimeout(() => {
+            window.location.href = "funnyparttwo.html";
+        }, 12050);
+    }
+</script>
+
+</body>
+</html>
