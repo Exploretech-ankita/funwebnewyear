@@ -62,7 +62,18 @@
         font-size: 24px;
         animation: sparkle 1s ease-out forwards;
     }
-
+    .back-btn {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 10;
+    background: rgba(255,255,255,0.85);
+    border: none;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+}
     @keyframes sparkle {
         0% { opacity: 1; transform: scale(1) rotate(0deg);}
         100% { opacity: 0; transform: scale(2) rotate(360deg);}
@@ -90,6 +101,7 @@
 <button class="section-button" onclick="goTo('achievement.html')" style="background-image: url('achievement.jpg');">🏆 Achievements</button>
 <button class="section-button" onclick="goTo('food.html')" style="background-image: url('food.jpg');">🍱 Food</button>
 <button class="section-button" onclick="goTo('special.html')" style="background-image: url('special.jpg');">💌 Special Message</button>
+<button class="back-btn" onclick="goBack()">⬅ Back</button>
 
 <script>
     function goTo(page) {
@@ -98,6 +110,13 @@
             window.location.href = page;
         }, 800);
     }
+    function goBack() {
+    if (history.length > 1) {
+        history.back();
+    } else {
+        location.href = "funnyparttwo.html"; // change to your previous page
+    }
+}
 </script>
 
 </body>
