@@ -39,5 +39,5 @@ No frameworks. No libraries. Just pure web fun 😄
 
 ---
 
-## 📂 Project Structure
+## Preview link - https://exploretech-ankita.github.io/funwebnewyear/
 
