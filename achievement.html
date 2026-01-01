@@ -125,7 +125,7 @@
     <h2> you will achieve more than you have even imagined!</h2>
     <img src="achievement_image.jpg" alt="Achievement">
 </div>
-<a href="page3.html"><button>⬅ Back</button></a>
+<a href="page3.html"><button class="back-btn">⬅ Back</button></a>
 <script>
     const giftButton = document.getElementById("giftButton");
     const message = document.getElementById("message");
@@ -159,19 +159,7 @@
         }, 1500);
         
     }
-    function goBack() 
-    {
-    if (history.length > 1) {
-        history.back();
-    } else {
-        location.href = "page3.html"; // change to your previous page
-    }
-}
-    window.addEventListener("pageshow", event => {
-    if (event.persisted) {
-        location.reload();
-    }
-});
+ 
 
     
 </script>
