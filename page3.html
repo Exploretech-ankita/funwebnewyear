@@ -101,7 +101,7 @@
 <button class="section-button" onclick="goTo('achievement.html')" style="background-image: url('achievement.jpg');">🏆 Achievements</button>
 <button class="section-button" onclick="goTo('food.html')" style="background-image: url('food.jpg');">🍱 Food</button>
 <button class="section-button" onclick="goTo('special.html')" style="background-image: url('special.jpg');">💌 Special Message</button>
-<button class="back-btn" onclick="goBack()">⬅ Back</button>
+<a href="funnyparttwo.html"><button class="back-btn">⬅ Back</button></a>
 
 <script>
     function goTo(page) {
@@ -110,13 +110,7 @@
             window.location.href = page;
         }, 800);
     }
-    function goBack() {
-    if (history.length > 1) {
-        history.back();
-    } else {
-        location.href = "funnyparttwo.html"; // change to your previous page
-    }
-}
+    
 </script>
 
 </body>
