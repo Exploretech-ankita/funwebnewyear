@@ -112,7 +112,7 @@
         <li>Dream big, plan smart, and take action with courage.</li>
     </ul>
 </div>
-<button class="back-btn" onclick="goBack()">⬅ Back</button>
+<a href="page3.html"><button class="back-btn">⬅ Back</button></a>
 <script>
     const sequenceMessage = document.getElementById("sequenceMessage");
     const specialContent = document.getElementById("specialContent");
@@ -151,14 +151,6 @@
             // Stop confetti after 5 seconds
             setTimeout(() => clearInterval(confettiInterval), 5000);
         }, 3500);
-    }
-     function goBack() {
-    if (history.length > 1) {
-        history.back();
-    } else {
-        location.href = "page3.html"; // change to your previous page
-    }
-}
 </script>
 
 </body>
