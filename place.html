@@ -101,7 +101,7 @@
     <h2>Everywhere you want to go</h2>
     <img src="paris.jpg" alt="Paris">
 </div>
-<a herf="page3.html"><button class="back-btn" onclick="goBack()">⬅ Back</button></a>
+<a herf="page3.html"><button>⬅ Back</button></a>
 
 <script>
     const giftButton = document.getElementById("giftButton");
@@ -117,13 +117,6 @@
             placeContent.style.display = "flex"; // show place name + image
         }, 1500); // 1.5 seconds delay
     }
-    function goBack() {
-    if (history.length > 1) {
-        history.back();
-    } else {
-        location.href = "page3.html"; // change to your previous page
-    }
-}
 </script>
 
 </body>
