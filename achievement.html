@@ -167,6 +167,12 @@
         location.href = "page3.html"; // change to your previous page
     }
 }
+    window.addEventListener("pageshow", event => {
+    if (event.persisted) {
+        location.reload();
+    }
+});
+
     
 </script>
 
