@@ -79,7 +79,7 @@
 
 <h1>🍱 Food is on the way! 🍽️</h1>
 <p>Hold tight… something yummy is coming!</p>
-<button class="back-btn" onclick="goBack()">⬅ Back</button>
+<a href="page3.html"><button class="back-btn">⬅ Back</button></a>
 
 
 <script>
@@ -99,13 +99,7 @@
     }
 
     setInterval(createConfetti, 200); // slow confetti
-      function goBack() {
-    if (history.length > 1) {
-        history.back();
-    } else {
-        location.href = "page3.html"; // change to your previous page
-    }
-}
+    
 </script>
 
 </body>
